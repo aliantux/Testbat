@@ -16,10 +16,11 @@ GPIO.setwarnings(False)
 # ces numeros de pins GPIO doivent etre modifies pour correspondre aux broches utilisees.
 # pour mizar:
 SPICLK = 9; SPIMISO = 8; SPIMOSI = 10; SPICS = 11
+R1 = 16; R2 = 20; R3 = 21; R4 = 12
 # pour regulus:
 # SPICLK = 23; SPIMISO = 22; SPIMOSI = 17; SPICS = 7 
 # Def des pins des relais
-R1 = 28; R2 = 29; R3 = 30; R4 = 31
+#R1 = 28; R2 = 29; R3 = 30; R4 = 31
 
 # definition de l'interface SPI
 GPIO.setup(SPIMOSI, GPIO.OUT)
@@ -46,6 +47,9 @@ def deconBat(strMsg):
 	GPIO.output(R1, True)
 
 #fonction lisant les donnees SPI de la puce MCP3008, parmi 8 entrees, de 0 a 7
+# ADC function are written by Limor "Ladyada" Fried for Adafruit Industries, (c) 2015
+# This code is released into the public domain
+
 def readAdc(adcnum):
         if ((adcnum > 7) or (adcnum < 0)):
                 return -1
