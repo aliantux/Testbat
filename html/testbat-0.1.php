@@ -131,7 +131,7 @@ while(!feof($f)) {
  </div>
  <div id="body">
 	<form method='POST' action='testbat.php'>
-	<table border="0">
+	<table border="1">
       <tr>
 	    <td valign='top'>
 			<a href="http://www.facebook.com/PlaneurChalles" target="_blank">
@@ -164,6 +164,9 @@ while(!feof($f)) {
 			if ($ktf=="1" and $ktst=="0") {
 				echo "<h3 class='tst' >Test Terminé, durée: ".gmstrftime('%T',$tsFin-$tsDeb)."</h3>\n";
 			}
+		echo "</td>\n";
+   	    echo "</td><td rowspan ='3' align='center'>\n";
+			echo "<img src='img/ubatr.png' alt='Ubatr.png'>\n";
 		echo "</td>\n";
 	echo "</tr><tr>\n";
 		echo "<td valign='top' align='left'>\n";

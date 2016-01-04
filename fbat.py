@@ -8,7 +8,7 @@ from Adafruit_MCP230xx import Adafruit_MCP230XX
 # defs
 OUTPUT = 0
 INPUT = 1
-batPath ="/home/jdb/bat/"
+batPath ="/home/pi/bat/"
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -40,33 +40,10 @@ def commutRel(R,st):
 	else:
 		GPIO.output(R,False)
 
-#fonction  lecture et stockage etat des relais dans params.read
-def stRels():
-	strFile="/home/jdb/adc/params.read"
-	f=open(strFile, 'w')
-	if GPIO.input(R1)==True:
-		f.write('1\n')
-	else:
-		f.write('0\n')
-	if GPIO.input(R2)==True:
-		f.write('1\n')
-	else:
-		f.write('0\n')
-	if GPIO.input(R3)==True:
-		f.write('1\n')
-	else:
-		f.write('0\n')
-	f.close
-
 #fonction  deconnection batterie si >15V ou <5V
 def deconBat(strMsg):
 	GPIO.output(R2, True)
 	GPIO.output(R1, True)
-	strFile="/home/jdb/adc/params.brk"
-	f=open(strFile, 'w')
-	f.write('1')
-	f.close
-	print strmsg
 
 #fonction lisant les donnees SPI de la puce MCP3008, parmi 8 entrees, de 0 a 7
 def readAdc(adcnum):
@@ -101,6 +78,7 @@ def readAdc(adcnum):
 
         adcout /= 2       # first bit is 'null' so drop it
         return adcout
+
 # ============================================================================
 # Fonction qui enleve le caractère LF (\n) de la chaine passée en paramètre 
 # et qui retourne la valeur du paramètre placé entre '=' et ';'
@@ -130,7 +108,7 @@ tsFin=fparam(fh.readline())
 fh.close
 
 # ================================================================
-# fonction de stockage des paramètre sous la forme "immat=F-CGUQ;"
+# fonction de stockage des paramètre sous la forme "immat=F-CPLA;"
 # ================================================================
 def fstoparam(immat,batNum,batCap,testSt,testFin,testBrk,relUdem,rel1st,rel2st,rel3st,rel4st,tsDeb,tsFin):
 	fh=open(batPath+"testbat.param","w")

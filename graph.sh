@@ -1,20 +1,25 @@
 #!/bin/sh
 #
+TSTPATH="/home/pi/bat"
+TMPDIR="/tmp/pibat"
+#
 # attente de la fin des mesures par testbat.py 
 sleep 3
 
 # cree le rep /tmp/bat if not exist
-[ -d /tmp/bat ] || mkdir /tmp/bat
+[ -d $TMPDIR ] || mkdir $TMPDIR
 
 # recup params
-. /home/jdb/bat/testbat.param
-. /home/jdb/bat/ip.param
+. $TSTPATH/testbat.param
+. $TSTPATH/ip.param
 
+dtg=`date +'%H:%M'`
 inf=`date +'Debut test le %d/%m %H:%M' -d @$tsDeb`
 orgr=`date +'%H:%M' -d @$tsDeb`
 fin=`date +'le %d/%m  %H:%M' -d @$tsFin`
 dur=`echo $(($tsFin - $tsDeb))`
-echo $tsDeb  $tsFin $dur $testFin
+echo "datGraph	Deb		Fin		Dur		tstfin"
+echo $dtg		$tsDeb	$tsFin	$dur 	$testFin
 
 if [ "$tsDeb" = "0" ] # && [" $tsFin" = "0" ]
 then
@@ -32,17 +37,17 @@ echo $inf
 #batCap=`echo $batCap | sed "s/0//"`
 
 #creation du graph web
-rrdtool graph /tmp/bat/ubat.png \
+rrdtool graph $TMPDIR/ubat.png \
     --imgformat PNG --width 480 --height 240 \
     --title  "CSVVA - Planeur $immat - Bat. N.$batNum : $batCap A/H   $inf"\
-	--vertical-label "U batterie (V)" \
+	--vertical-label "U batterie (V) "$dtg \
     --start=now-13h --end=now \
     --lower-limit 0 --upper-limit 15 --rigid \
 	--right-axis-label 'I decharge (A)'\
     --right-axis .1:0               \
 	--right-axis-format %1.1lf		\
-    DEF:Ubat=/home/jdb/bat/acu.rrd:adc0:AVERAGE \
-    DEF:Ibat=/home/jdb/bat/acu.rrd:adc1:AVERAGE \
+    DEF:Ubat=$TSTPATH/acu.rrd:adc0:AVERAGE \
+    DEF:Ibat=$TSTPATH/acu.rrd:adc1:AVERAGE \
 	CDEF:Ig=Ibat,10,*	\
     AREA:Ubat#21fd93 \
     AREA:Ig#fd7921 \
@@ -56,10 +61,13 @@ rrdtool graph /tmp/bat/ubat.png \
 	VDEF:Vm=Ubat,MINIMUM         \
     COMMENT:"Vmin\:" GPRINT:Vm:"%4.2lf V" \
 	GPRINT:Vm:"Hmes\: %H\:%M\:%S":strftime \
-	HRULE:11#FF0000:"Limite basse"
+	HRULE:11#FF0000:"Limite basse"			\
+
+#	COMMENT:"IP="$wip			\
+#	COMMENT:" DtGr="$dtg
 #
 # creation du graph reduit pour aff 320x240
-rrdtool graph /tmp/bat/ubatr.png \
+rrdtool graph $TMPDIR/ubatr.png \
     --imgformat PNG --width 320 --height 240 --full-size-mode \
 	--color CANVAS#000000                   \
     --color BACK#101010                     \
@@ -69,11 +77,11 @@ rrdtool graph /tmp/bat/ubatr.png \
     --color FRAME#404040                    \
     --color ARROW#FFFFFF                    \
     --title "CSVVA $immat Bat$batNum $batCap A/H Deb:$orgr" \
-	--vertical-label "U bat \ I bat(*10)" \
+	--vertical-label "U bat \ I bat(*10) "$dtg \
     --start=now-13h --end=now \
     --lower-limit 0 --upper-limit 15 --rigid \
-    DEF:Ubat=/home/jdb/bat/acu.rrd:adc0:AVERAGE \
-    DEF:Ibat=/home/jdb/bat/acu.rrd:adc1:AVERAGE \
+    DEF:Ubat=$TSTPATH/acu.rrd:adc0:AVERAGE \
+    DEF:Ibat=$TSTPATH/acu.rrd:adc1:AVERAGE \
 	CDEF:Ig=Ibat,10,*	\
     AREA:Ubat#21fd93 \
     AREA:Ig#fd7921 \
@@ -82,11 +90,4 @@ rrdtool graph /tmp/bat/ubatr.png \
 	LINE1:Ubat#0000FF:Ub \
     GPRINT:Ubat:LAST:"%2.2lfV" \
 	HRULE:11#FF0000:"U.min"		\
-	COMMENT:"IP="$wip				
-#    PRINT:Ubat:LAST:"%4.2lf V" 
-	#COMMENT:"  "$deb	\
-	#COMMENT:"Début test\: 10\:24"	\
-    #--title  "CSVVA - Planeur $Ps - Batterie N°$Nb : $Cb A/H      "`date +"%H:%M:%S"` \
-	
-#VDEF:VM=Ubat,MAXIMUM         \
-#   COMMENT:"Mx\:" GPRINT:VM:"%2.2lfV" \
+	COMMENT:"IP="$wip			\

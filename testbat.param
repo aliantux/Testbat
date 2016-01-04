@@ -1,11 +1,11 @@
-immat=SPARE1;
+immat=P-SOL1;
 batNum=1;
-batCap=14;
+batCap=7;
 testSt=0;
 testFin=0;
 testBrk=0;
-relUdem=0;
-rel1st=0;
+relUdem=1;
+rel1st=1;
 rel2st=0;
 rel3st=0;
 rel4st=0;

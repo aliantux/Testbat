@@ -6,7 +6,7 @@ import os, sys, time
 from fbat import *
 from rrdtool import update as rrd_update
 
-os.chdir("/home/jdb/bat/")
+os.chdir(batPath)
 
 # Def des canaux ADC 
 # ============> a inverser <==================

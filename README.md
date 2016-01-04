@@ -2,7 +2,7 @@ Measuring the actual capacity of a battery by an controlled discharge
 
 Contexte :
 ==========
-C'est la seule source d'énergie disponible à bord pendant tout un vol qui peut durer de 5 minutes à 10 heures avec des vols habituels de 3 à 5 heures
+La batterie du planeur, c'est la seule source d'énergie disponible à bord pendant tout un vol qui peut durer de 5 minutes à 10 heures avec des vols habituels de 3 à 5 heures
 
 Il est donc important de savoir sur quelle quantité d'énergie on peut compter.
 
