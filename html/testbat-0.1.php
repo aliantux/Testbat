@@ -17,19 +17,19 @@ echo "<body>\n";
 // ========== récupération des paramètres ======
 echo "<p class=inf1>\n";
 $f = fopen($batPath."testbat.param", "r");
-	$immat=fparam(fgets($f));print $immat.", ";
-	$batNum=fparam(fgets($f));print $batNum.", ";
-	$batCap=fparam(fgets($f));print $batCap.", ";
-	$testSt=fparam(fgets($f));print $testSt.", ";
-	$testFin=fparam(fgets($f));print $testFin.", ";
-	$testBrk=fparam(fgets($f));print $testBrk.", ";
-	$relUdem=fparam(fgets($f));print $relUdem.", ";
-	$rel1st=fparam(fgets($f));print $rel1st.", ";
-	$rel2st=fparam(fgets($f));print $rel2st.", ";
-	$rel3st=fparam(fgets($f));print $rel3st.", ";
-	$rel4st=fparam(fgets($f));print $rel4st.", ";
-	$tsDeb=fparam(fgets($f));print $tsDeb.", ";
-	$tsFin=fparam(fgets($f));print $tsFin."\n";
+	$immat=fparam(fgets($f));//print $immat.", ";
+	$batNum=fparam(fgets($f));//print $batNum.", ";
+	$batCap=fparam(fgets($f));//print $batCap.", ";
+	$testSt=fparam(fgets($f));//print $testSt.", ";
+	$testFin=fparam(fgets($f));//print $testFin.", ";
+	$testBrk=fparam(fgets($f));//print $testBrk.", ";
+	$relUdem=fparam(fgets($f));//print $relUdem.", ";
+	$rel1st=fparam(fgets($f));//print $rel1st.", ";
+	$rel2st=fparam(fgets($f));//print $rel2st.", ";
+	$rel3st=fparam(fgets($f));//print $rel3st.", ";
+	$rel4st=fparam(fgets($f));//print $rel4st.", ";
+	$tsDeb=fparam(fgets($f));//print $tsDeb.", ";
+	$tsFin=fparam(fgets($f));//print $tsFin."\n";
 fclose($f);
 echo "</p>\n";
 
@@ -131,7 +131,7 @@ while(!feof($f)) {
  </div>
  <div id="body">
 	<form method='POST' action='testbat.php'>
-	<table border="1">
+	<table border="0">
       <tr>
 	    <td valign='top'>
 			<a href="http://www.facebook.com/PlaneurChalles" target="_blank">
@@ -165,8 +165,27 @@ while(!feof($f)) {
 				echo "<h3 class='tst' >Test Terminé, durée: ".gmstrftime('%T',$tsFin-$tsDeb)."</h3>\n";
 			}
 		echo "</td>\n";
-   	    echo "</td><td rowspan ='3' align='center'>\n";
-			echo "<img src='img/ubatr.png' alt='Ubatr.png'>\n";
+   	    echo "<td rowspan ='3' >\n";
+		echo "&nbsp;&nbsp;\n";
+		echo "</td>\n";
+   	    echo "<td rowspan ='3' align='left' valign='top'>\n";
+			//echo "<br><br>\n";
+			echo "<p class='param'>\n";
+			echo "Paramètres <br><br>\n";
+			echo "immat = ".$kimmat."<br>\n";
+			echo "batNum = ".$kbn."<br>\n";
+			echo "batCap = ".$kbc."<br>\n";
+			echo "testSt = ".$ktst."<br>\n";
+			echo "testFin = ".$ktf."<br>\n";
+			echo "testBrk = ".$kbrk."<br>\n";
+			echo "relUdem = ".$krud."<br>\n";
+			echo "rel1st = ".$rel1st."<br>\n";
+			echo "rel2st = ".$rel2st."<br>\n";
+			echo "rel3st = ".$rel3st."<br>\n";
+			echo "rel4st = ".$rel4st."<br>\n";
+			echo "tsDeb = ".$tsDeb."<br>\n";
+			echo "tsFin = ".$tsFin."<br>\n";
+			echo "</p>\n";
 		echo "</td>\n";
 	echo "</tr><tr>\n";
 		echo "<td valign='top' align='left'>\n";
@@ -227,7 +246,9 @@ while(!feof($f)) {
 echo "<h3 class='inf' >Ne pas oublier de remettre la batterie en charge après le test</h3>\n";
 echo "Derniere mise &agrave; jour le ".date("d-m-Y")." &agrave; ". date ("H\:i:s")."<br>\n";
 echo "Le test s'arrêtera si la tension devient inférieure à 11V ou si la durée de décharge atteint 10 heures\n";
-echo "</div></div>\n"; //fin de div page et div body
+echo "</div>";
+echo "<img src='img/ubatr.png' alt='Ubatr.png'>\n";
+echo "</div>\n"; //fin de div page et div body
 require "btmpage.inc.php";
 // ************fonctions perso*************
 // ================= Fonctions =============================

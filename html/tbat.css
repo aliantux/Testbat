@@ -35,3 +35,9 @@ p.inf2	{
 	#font-weight:bold;
 	background-color: #deeeec ;
 	}
+p.param{
+	padding: 10px;
+	color: #436976 ;
+    font-weight:bold;
+    background-color: #deeeec ;
+}

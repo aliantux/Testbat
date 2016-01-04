@@ -4,8 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta generator="vi">
 <meta name="author" content="jdb">
-<meta name="copyright" content="jdb 2014">
+<meta name="copyright" content="jdb 2016">
 <meta http-equiv="refresh" content="30">
-<title>CSVVA Atelier</title>
+<title>TestBat</title>
 <link rel="stylesheet" type="text/css" href="tbat.css">
 </head>

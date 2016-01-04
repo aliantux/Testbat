@@ -12,8 +12,9 @@ os.chdir(batPath)
 # ============> a inverser <==================
 # inversion 0 et 1 car resistances sur adc2
 adcU=1; adcI=0
+adcU=7; adcI=1
 Umin=11
-maxh=1 #10 heures
+maxh=10 #10 heures
 maxsec=maxh*3600
 # pour test to be remove!
 #maxsec=70
@@ -68,8 +69,8 @@ Ubat = readAdc(adcU) * ( 3.3 / 1024.0) * 5
 Ibat = readAdc(adcI) * ( 3.3 / 1024.0)
 
 # ##############pour test break to be remove! ##############
-if (tsDeb !="0" and nmdeb>3):
-	Ubat=10.9
+#if (tsDeb !="0" and nmdeb>3):
+#	Ubat=10.9
 ############################################################
 print "\tHeure mesure:"+strTime
 print "\ttension : %0.2f V" % Ubat
@@ -77,7 +78,7 @@ print "\tIntensité : %0.2f A" % Ibat
 print "\tPuissance : %0.2f W" % (Ubat * Ibat)
 
 # stockage en rrd
-ret = rrd_update('/home/jdb/bat/acu.rrd', 'N:%s:%s' %(Ubat,Ibat));
+ret = rrd_update(batPath + 'acu.rrd', 'N:%s:%s' %(Ubat,Ibat));
 
 # test conditions brk
 if Ubat >= 15 or (Ubat > 1 and Ubat < Umin):
