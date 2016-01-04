@@ -1,9 +1,8 @@
 Measuring glider battery
-========================
+==
 Measuring the actual capacity of a battery by an controlled discharge
-
 Contexte :
-----------
+--
 La batterie du planeur, c'est la seule source d'énergie disponible à bord pendant tout un vol qui peut durer de 5 minutes à 10 heures avec des vols habituels de 3 à 5 heures
 
 Il est donc important de savoir sur quelle quantité d'énergie on peut compter.
@@ -20,15 +19,15 @@ Actuellement les batteries plomb étanches sont les plus courantes.
 Lors des visites annuelles pendant la période hivernale, j'ai conçu ce testeur afin d'avoir l'image la plus juste de l'état de la batterie et de déceler à coup sur les batteries défectueuses.
 
 Principe :
-=========
+--
 Le principe est de prendre une batterie chargée et de la décharger au 1/10 de sa capacité (correspondant grosso-modo aux conditions de vol) pendant une durée max de 10 heures avec arrêt automatique du test si la tension batterie descend au dessous de 11 V.
 Les mesures et un graph de suivi sont effectuées toutes les minutes via une tache cron, le paramétrage, la commande du test et la visualisation sont réalisés via une interface web et les données stockées sur une base rrd
 
 Hardware :
-==========
+--
 Le hardware est basé sur le populaire Raspberry-PI , à l'origine un modèle B mais est tout à fait transposable sur un B+, un 2 et même testé sur un PI-0.
 J'ai créé une platine complémentaire comportant des relais de commutation de la batterie et des résistances de décharge, un convertisseur analogique numérique, des systèmes de protection, avec en option une horloge RTC, un mini écran 2,5" afin de rendre l'appareil autonome.
 
 Software :
-==========
+--
 L'applicatif utilise une page web php qui renseigne un fichier d'échange et assure la visualisation instantanée de l'avancement du test  et  un programme en python qui assure le contrôle, les mesures et le stockage des données
