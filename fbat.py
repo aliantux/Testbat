@@ -2,25 +2,18 @@
 # -*- coding: utf-8 -*-
 #
 import os, sys
+from userParam import *
 import RPi.GPIO as GPIO
 from Adafruit_MCP230xx import Adafruit_MCP230XX
 
 # defs
 OUTPUT = 0
 INPUT = 1
-batPath ="/home/pi/bat/"
+
+print batPath
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-
-# ces numeros de pins GPIO doivent etre modifies pour correspondre aux broches utilisees.
-# pour mizar:
-SPICLK = 9; SPIMISO = 8; SPIMOSI = 10; SPICS = 11
-R1 = 16; R2 = 20; R3 = 21; R4 = 12
-# pour regulus:
-# SPICLK = 23; SPIMISO = 22; SPIMOSI = 17; SPICS = 7 
-# Def des pins des relais
-#R1 = 28; R2 = 29; R3 = 30; R4 = 31
 
 # definition de l'interface SPI
 GPIO.setup(SPIMOSI, GPIO.OUT)
@@ -36,20 +29,17 @@ GPIO.setup(R4, GPIO.OUT)
 
 # fonction de commutation des relais
 def commutRel(R,st):
+	print R,st
 	if st==1:
 		GPIO.output(R,True)
 	else:
 		GPIO.output(R,False)
-
-#fonction  deconnection batterie si >15V ou <5V
-def deconBat(strMsg):
-	GPIO.output(R2, True)
-	GPIO.output(R1, True)
+	if GPIO.input(R)==True:
+		return "1"
+	else:
+		return "0"		
 
 #fonction lisant les donnees SPI de la puce MCP3008, parmi 8 entrees, de 0 a 7
-# ADC function are written by Limor "Ladyada" Fried for Adafruit Industries, (c) 2015
-# This code is released into the public domain
-
 def readAdc(adcnum):
         if ((adcnum > 7) or (adcnum < 0)):
                 return -1
@@ -112,7 +102,7 @@ tsFin=fparam(fh.readline())
 fh.close
 
 # ================================================================
-# fonction de stockage des paramètre sous la forme "immat=F-CPLA;"
+# fonction de stockage des paramètre sous la forme "immat=F-CGUQ;"
 # ================================================================
 def fstoparam(immat,batNum,batCap,testSt,testFin,testBrk,relUdem,rel1st,rel2st,rel3st,rel4st,tsDeb,tsFin):
 	fh=open(batPath+"testbat.param","w")
