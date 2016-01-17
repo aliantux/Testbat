@@ -28,6 +28,8 @@ Hardware :
 ----------
 Le hardware est basé sur le populaire Raspberry-PI , à l'origine un modèle B mais est tout à fait transposable sur un B+, un 2 et même testé sur un PI-0.
 J'ai créé une platine complémentaire comportant des relais de commutation de la batterie et des résistances de décharge, un convertisseur analogique numérique, des systèmes de protection, avec en option une horloge RTC, un mini écran 2,5" afin de rendre l'appareil autonome.
+#### Schéma de base de la platine interface:
+![schéma TestBat Simplifié](ex/schemaTestBatSimpl.png)
 
 Software :
 ----------
