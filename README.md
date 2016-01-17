@@ -35,8 +35,9 @@ L'applicatif utilise une page web php qui renseigne un fichier d'échange et ass
 
 Exemples
 --
-* Un test sur une bonne batterie:
+#### Un test sur une bonne batterie:
 ![Test OK](ex/batOk.png)
 
-* Un test sur une batterie HS:
+
+#### Un test sur une batterie HS:
 ![Test OK](ex/batKo.png)
