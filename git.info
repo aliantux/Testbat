@@ -1,0 +1,13 @@
+[ git diff ]
+
+[ git add fic ]
+
+git commit [-m message]
+
+git push origin master
+Username for 'https://github.com': aliantux
+Password for 'https://aliantux@github.com': q0q.....
+
+fichier .md: voir http://blog.wax-o.com/2014/04/tutoriel-un-guide-pour-bien-commencer-avec-markdown/
+editer en local ReText 
+$ retext
