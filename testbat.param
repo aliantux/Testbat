@@ -1,0 +1,13 @@
+immat=P-SOL2;
+batNum=1;
+batCap=7;
+testSt=0;
+testFin=0;
+testBrk=1;
+relUdem=0;
+rel1st=0;
+rel2st=0;
+rel3st=0;
+rel4st=0;
+tsDeb=0;
+tsFin=1465732681;
