@@ -1,21 +1,27 @@
 #!/bin/sh
 #
+echo "====================="
+echo "Creation des graphs"
+#Mettre ici le nom de l'user"
+user="pi"
+#Mettre ici le nom de repertoire de travail"
 TSTPATH="$HOME/adc"
-TMPDIRUSER="/tmp/$USER"
-TMPDIRTBAT="$TMPDIRUSER/bat"
-echo $TSTPATH $TMPDIRTBAT
-#
-# attente de la fin des mesures par testbat.py 
-sleep 3
 
-# cree le rep /tmp/user if not exist
-[ -d $TMPDIRUSER ] || mkdir $TMPDIRUSER
-
-# cree le rep /tmp/user/bat if not exist
-[ -d $TMPDIRTBAT ] || mkdir $TMPDIRTBAT
+TMPDIRUSER="/tmp/$user"
+TMPDIRTBAT="/tmp/$user/bat"
+echo "TSTPATH:$TSTPATH, TMPSIRUSER:$TMPDIRUSER, TMPDIRTBAT:$TMPDIRTBAT"
 
 # recup params
 . $TSTPATH/testbat.param
+
+# attente de la fin des mesures par testbat.py 
+sleep 1
+
+# cree le rep /tmp/$user if not exist
+[ -d $TMPDIRUSER ] || mkdir $TMPDIRUSER
+
+# cree le rep /tmp/$user/bat if not exist
+[ -d $TMPDIRTBAT ] || mkdir $TMPDIRTBAT
 
 dtg=`date +'%H:%M'`
 dtf=`date +'%d-%m-%Y'`
@@ -45,6 +51,7 @@ tim=`date +"%H:%M"`
 #--title  "CSVVA - Planeur $immat - Bat. N.$batNum : $batCap A/H   $inf"\
 
 #creation du graph web
+echo "Creation de $TMPDIRTBAT/ubat.png"
 rrdtool graph $TMPDIRTBAT/ubat.png \
     --imgformat PNG --width 480 --height 240 \
     --title  "CSVVA - $immat -   $tim"\
@@ -76,6 +83,7 @@ rrdtool graph $TMPDIRTBAT/ubat.png \
 
 #
 # creation du graph reduit pour aff 320x240
+echo "Creation de $TMPDIRTBAT/ubatr.png"
 rrdtool graph $TMPDIRTBAT/ubatr.png \
     --imgformat PNG --width 320 --height 240 --full-size-mode \
 	--color CANVAS#000000                   \
@@ -99,4 +107,8 @@ rrdtool graph $TMPDIRTBAT/ubatr.png \
 	LINE1:Ubat#0000FF:Ub \
     GPRINT:Ubat:LAST:"%2.2lfV" \
 	HRULE:11#FF0000:"U.min"		\
-	COMMENT:"IP="$wip			\
+	COMMENT:"IP="$wip			
+
+#
+echo "Creation des graphs: Terminé"
+echo "============================"
