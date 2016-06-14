@@ -81,6 +81,10 @@ L'applicatif utilise une page web php qui renseigne un fichier d'échange et ass
 et  un programme en python qui assure le contrôle, les mesures et le stockage des données.  
 Les données seront stockées en base rrd (ne nécessitant pas de maintenance).  
 L'utilitaire rrdgraph sera utilisé pour générer les graphiques.  
+
+Il est important d'adapter les pins pour le pseudo SPI de l'adc ainsi que les canaux ADC utiisés  
+dans home/pi/adc/userParam.py
+
 Le programme devra se trouver dans /home/pi/adc sinon modifier les liens en conséquence dans  
 testbat.sh, userParam.py, html/params.inc.php.
 
