@@ -62,12 +62,12 @@ Bien sûr un choix de résistances ou de timing différent pourra être adapté 
 
 Software:
 --
-L'applicatif utilise une page web php qui renseigne un fichier d'échange et assure la visualisation instantanée de l'avancement du test  et  un programme en python qui assure le contrôle, les mesures et le stockage des données
+L'applicatif utilise une page web php qui renseigne un fichier d'échange et assure la visualisation instantanée de l'avancement du test  et  un programme en python qui assure le contrôle, les mesures et le stockage des données.
 
-le programme devra se trouver dans /home/pi/adc sinon modifier les liens en conséquence dans 
-testbat.sh, userParam.py, html/params.inc.php
+Le programme devra se trouver dans /home/pi/adc sinon modifier les liens en conséquence dans 
+testbat.sh, userParam.py, html/params.inc.php.
 
-une tache cron lance toutes les minutes le script qui appelle le programme python de mesure puis le script qui construit les graphiques
+Une tache cron lance toutes les minutes le script qui appelle le programme python de mesure puis le script qui construit les graphiques.
 
     # m h  dom mon dow   command
     * * * * *  /bin/sh /home/pi/adc/testbat.sh > /dev/null 2>&1
