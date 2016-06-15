@@ -1,4 +1,4 @@
 <?php
-$batPath="/home/pi/bat/";
+$batPath="/home/pi/adc/";
 ?>
 
