@@ -96,9 +96,20 @@ Une tache cron devra lancer toutes les minutes le script qui appelle le programm
 Pour accéder à la page web il faudra créer un lien symbolique entre le "server.document-root"  
 (trouvé dans /etc/lighttpd/lighttpd.conf) et le dossier /home/pi/adc/html
 
+Pour valider le php executer  
+    sudo lighttpd-enable-mod fastcgi fastcgi-php  
+    sudo /etc/init.d/lighttpd force-reload  
+    
+Afin de ne pas trop écrire dans la carte SD, les graphs sont générés dans /tmp/pi/bat.  
+Donc il faut créer un lien symbolique dans /home/pi/adc/html/img/  
+    ln -s /tmp/pi/bat/ubatr.png .
+    
 Paquets nécessaires (liste non exhaustive)
 --
 pyhton, rrdtool, python-rrdtool, lighttpd, php5-cgi
+
+Paquets optionnels (liste non exhaustive)
+git 
 
 Exemples:
 --
