@@ -130,7 +130,8 @@ while(!feof($f)) {
  <h1>Graphique test de décharge batterie </h1>
  </div>
  <div id="body">
-	<form method='POST' action='testbat.php'>
+	<!--<form method='POST' action='testbat.php'>-->
+    <form method='POST' action="<?php echo $_SERVER['PHP_SELF']; ?>">
 	<table border="0">
       <tr>
 	    <td valign='top'>
