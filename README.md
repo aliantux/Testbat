@@ -58,7 +58,7 @@ la tension de la batterie passe d'abord par un pont diviseur par 5 composé de 5
 (facilité d'approvisionnement et faible coût).  
 Il en résulte que la tension maximum admissible en entrée est égale à 3.3V X 5 = **16,5V.**  
 Même si cette tension de devrait jamais être atteinte avec un chargeur régulé digne de ce nom,  
-une protection par une diode zener de 15V est a été mise en place.  
+une protection par une diode zener de 15V a été mise en place.  
 En cas de dépassement de la tension de 15V la diode se mettra à conduire ce qui entraînera  
 la fusion du fusible qui déconnectera de fait la batterie.  
 D'autre part, le logiciel déconnectera également l'entrée via le relais Rel1 en cas de dépassement  
